@@ -5,6 +5,8 @@
 License : MIT
 Gatotkaca search engine adalah website search engine seperti pada umumnya, untuk datanya sendiri adalah hasil scraping dari goole.
 
+</div>
+
 ## Instalation
 
 ```bash
