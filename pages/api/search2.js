@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 
   const response = await google.search(searchQuery, options);
 
-  if (response.videos.length > 0) {
+  if (response.videos) {
     const videos = await search(searchQuery);
     newVideos = videos.map((a) => {
       return {
@@ -50,8 +50,8 @@ export default async function handler(req, res) {
   let knowledge_panel = response.knowledge_panel;
 
   if (
-    response.knowledge_panel.title &&
-    response.knowledge_panel.title !== 'N/A' &&
+    response.knowledge_panel.title ||
+    response.knowledge_panel.title !== 'N/A' ||
     !response.knowledge_panel.images
   ) {
     let dataImages = await google.image(searchQuery, { safe: false });
@@ -67,7 +67,7 @@ export default async function handler(req, res) {
     results: response.results,
     videos: newVideos,
     panel: knowledge_panel,
-    people_also_search: response.people_also_search_for,
+    people_also_search: response.people_also_search,
     related_search: response.people_also_ask,
     mungkin: response.did_you_mean,
   });

@@ -2,34 +2,6 @@ import Image from 'next/image';
 import Karya from './Karya';
 
 export default function Panel({ panel }) {
-  let hasilKarya;
-  let keyVal = Object.entries(panel);
-
-  const karya = (title, value) => {
-    return { title, value };
-  };
-
-  let data = keyVal?.map(([key, value]) => {
-    if (
-      key === 'description' ||
-      key === 'images' ||
-      key === 'url' ||
-      key === 'title' ||
-      key === 'type'
-    ) {
-      return;
-    } else {
-      if (key !== 'images') {
-        hasilKarya = karya(key, value);
-      }
-
-      if (!Array.isArray(value)) {
-        let newKey = key.toString().replaceAll('_', ' ');
-        return { newKey, value };
-      }
-    }
-  });
-
   return (
     <>
       <div className="w-full">
@@ -63,12 +35,12 @@ export default function Panel({ panel }) {
                 {panel.description !== 'N/A' && panel.description}
               </p>
               <div className="flex flex-col gap-1 mt-3">
-                {data.map((a, i) => {
+                {panel.metadata?.map((a, i) => {
                   if (a !== undefined) {
                     return (
                       <p key={i} className="text-xs text-black">
                         <span className="font-semibold capitalize">
-                          {a.newKey}:{' '}
+                          {a.title}: {''}
                         </span>
                         {a.value}
                       </p>
@@ -76,18 +48,25 @@ export default function Panel({ panel }) {
                   }
                 })}
 
-                {panel.ratings && (
+                {panel.ratings.length > 0 && (
                   <p className="text-sm py-2">
                     <span className="font-semibold">Rating: </span>
-                    {panel.ratings[0].rating}
+                    {panel.ratings[0]?.rating}
                   </p>
                 )}
               </div>
             </div>
           </div>
           <Karya
-            title={hasilKarya?.title ? hasilKarya.title : ''}
-            value={hasilKarya?.value ? hasilKarya.value : ''}
+            karya={
+              panel.tv_shows_and_movies.length > 0
+                ? panel.tv_shows_and_movies
+                : panel.books.length > 0
+                ? panel.books
+                : panel.songs.length > 0
+                ? panel.songs
+                : []
+            }
           />
         </div>
       </div>

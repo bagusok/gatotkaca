@@ -9,13 +9,13 @@ export default function VideoResult({ videos }) {
           <div className="flex flex-row md:pb-4 gap-2  w-full md:h-56 rounded-md overflow-x-scroll pb-2 overflow-y-hidden scrollbar-hide md:scrollbar-default scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-slate-300 scrollbar-track-slate-100">
             {videos.map((a, i) => {
               return (
-                <div key={i} className="w-1/3">
-                  <div className="card flex flex-col justify-between h-full w-full  rounded-md bg-white shadow-md p-2 border border-slate-200 ">
-                    <div className="image overflow-hidden h-auto bg-black">
+                <div key={i} className="w-72">
+                  <div className="card flex flex-col justify-between w-full rounded-md bg-white shadow-md p-2 border border-slate-200 ">
+                    <div className="image overflow-hidden h-36 bg-black w-full">
                       <Image
                         src={a.thumbnails.url}
                         width="100%"
-                        height="50%"
+                        height="100%"
                         alt={a.title}
                         layout="responsive"
                         objectFit="cover"

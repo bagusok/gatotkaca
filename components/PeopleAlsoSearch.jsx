@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function PeopleAlsoSearch({ data }) {
   return (
     <>
-      {data[0] && (
+      {data.length > 0 && (
         <>
           {' '}
           <h2 className="-mb-1 mt-2 text-sm text-black font-semibold">

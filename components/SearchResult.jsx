@@ -4,7 +4,7 @@ import VideoResult from './VideoResult';
 export default function SearchResult({ search, videos }) {
   return (
     <div className="flex flex-col gap-7 text-start">
-      {videos && <VideoResult videos={videos} />}
+      {/* {videos && <VideoResult videos={videos} />} */}
       {search &&
         search.map((a, i) => {
           return (
