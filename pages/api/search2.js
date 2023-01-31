@@ -33,19 +33,19 @@ export default async function handler(req, res) {
 
   const response = await google.search(searchQuery, options);
 
-  if (response.videos) {
-    const videos = await search(searchQuery);
-    newVideos = videos.map((a) => {
-      return {
-        id: a.id,
-        url: a.url,
-        title: a.title,
-        thumbnails: a.thumbnails[0],
-        duration: a.durationText,
-        channel: { name: a.channel.name, url: a.channel.url },
-      };
-    });
-  }
+  // if (response.videos) {
+  //   const videos = await search(searchQuery);
+  //   newVideos = videos.map((a) => {
+  //     return {
+  //       id: a.id,
+  //       url: a.url,
+  //       title: a.title,
+  //       thumbnails: a.thumbnails[0],
+  //       duration: a.durationText,
+  //       channel: { name: a.channel.name, url: a.channel.url },
+  //     };
+  //   });
+  // }
 
   let knowledge_panel = response.knowledge_panel;
 
@@ -65,7 +65,6 @@ export default async function handler(req, res) {
   return res.status(200).json({
     status: 'success',
     results: response.results,
-    videos: newVideos,
     panel: knowledge_panel,
     people_also_search: response.people_also_search,
     related_search: response.people_also_ask,

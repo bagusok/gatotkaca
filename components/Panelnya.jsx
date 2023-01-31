@@ -58,7 +58,7 @@ export default function Panel({ panel }) {
                   </p>
                 )}
 
-                {panel.lyrics.length > 0 && (
+                {panel.lyrics?.length > 0 && (
                   <div
                     className={`${
                       seeMore ? 'h-full' : 'h-48'
