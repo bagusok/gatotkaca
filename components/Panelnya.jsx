@@ -1,7 +1,10 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import Karya from './Karya';
 
 export default function Panel({ panel }) {
+  const [seeMore, setSeeMore] = useState(false);
+
   return (
     <>
       <div className="w-full">
@@ -53,6 +56,27 @@ export default function Panel({ panel }) {
                     <span className="font-semibold">Rating: </span>
                     {panel.ratings[0]?.rating}
                   </p>
+                )}
+
+                {panel.lyrics.length > 0 && (
+                  <div
+                    className={`${
+                      seeMore ? 'h-full' : 'h-48'
+                    } overflow-hidden relative`}
+                  >
+                    <div className="h-10 w-full bg-white/60 absolute bottom-0 left-0 right-0 text-center">
+                      <button
+                        type="button"
+                        className="bg-blue-500 rounded-full text-xs text-white px-2 py-1 mt-4 shadow-lg"
+                        onClick={() => setSeeMore((prev) => !prev)}
+                      >
+                        See More
+                      </button>
+                    </div>
+                    <p className="text-sm py-2 whitespace-pre-line">
+                      {panel.lyrics}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>

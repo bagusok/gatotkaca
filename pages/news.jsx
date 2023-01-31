@@ -109,7 +109,7 @@ export default function news(props) {
             <User />
           </div>
           <div className="flex flex-row gap-6 text-sm mt-7 border-b border-slate-200">
-            <a href={`/semua?q=${q}&page=1`} className="text-slate-400">
+            <a href={`/search?q=${q}&page=1`} className="text-slate-400">
               Semua
             </a>
             <a href={`/images?q=${q}&page=1`} className="text-slate-400">
